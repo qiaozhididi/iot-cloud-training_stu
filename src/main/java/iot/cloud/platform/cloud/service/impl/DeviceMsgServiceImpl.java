@@ -14,24 +14,25 @@ import java.util.List;
 
 @Service
 public class DeviceMsgServiceImpl implements DeviceMsgService {
-  @Autowired
-  private DeviceMsgMapper deviceMsgMapper;
-  @Override
-  public List<DeviceMsgEntity> getByTag(String iotId, String tag) {
-    return deviceMsgMapper.getByTag(iotId,tag);
-  }
+    @Autowired
+    private DeviceMsgMapper deviceMsgMapper;
 
-  @Override
-  public boolean save(DeviceMsgVo vo) {
-    DeviceMsgEntity msg=new DeviceMsgEntity();
-    try {
-      msg.setMsg(new ObjectMapper().writeValueAsString(vo.getMsg()));
-    } catch (JsonProcessingException e) {
-      throw new RuntimeException(e);
+    @Override
+    public List<DeviceMsgEntity> getByTag(String iotId, String tag) {
+        return deviceMsgMapper.getByTag(iotId, tag);
     }
-    msg.setIotId(vo.getIotId());
-    msg.setCreateTime(new Date());
-    msg.setTag(vo.getTag());
-    return deviceMsgMapper.save(msg);
-  }
+
+    @Override
+    public boolean save(DeviceMsgVo vo) {
+        DeviceMsgEntity msg = new DeviceMsgEntity();
+        try {
+            msg.setMsg(new ObjectMapper().writeValueAsString(vo.getMsg()));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        msg.setIotId(vo.getIotId());
+        msg.setCreateTime(new Date());
+        msg.setTag(vo.getTag());
+        return deviceMsgMapper.save(msg);
+    }
 }

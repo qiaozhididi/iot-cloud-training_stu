@@ -3,8 +3,10 @@
 <mapper namespace="iot.cloud.platform.cloud.mapper.DeviceMsgMapper">
     <select id="getByTag" resultType="iot.cloud.platform.cloud.entity.DeviceMsgEntity">
         <!-- 请完善SQL 保存设备消息 -->
+        select * from device_msg where tag = #{tag}
     </select>
     <insert id="save" parameterType="iot.cloud.platform.cloud.entity.DeviceMsgEntity">
-       <!-- 请完善SQL 保存设备消息 -->
+        <!-- 请完善SQL 保存设备消息 -->
+        insert into device_msg (iot_id,msg,tag, create_time) values (#{iotId},#{msg},#{tag},#{createTime})
     </insert>
 </mapper>
