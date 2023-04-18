@@ -139,7 +139,7 @@ public class DeviceController {
             deviceService.createDevice(dev, userId);
             resMsg.setErrcode("0");
             resMsg.setErrmsg("设备创建成功");
-            resMsg.setData(dev);
+            resMsg.setData(new RedirectVo("/device_list"));
         } else {
             resMsg.setErrcode("30001");
             resMsg.setErrmsg("设备创建失败");
