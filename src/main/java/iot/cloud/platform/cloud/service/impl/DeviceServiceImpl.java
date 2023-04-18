@@ -49,12 +49,14 @@ public class DeviceServiceImpl implements DeviceService {
     public DeviceEntity registerDevice(RegisterDeviceVo dev, String userId) {
         DeviceVo dvo = new DeviceVo();
         //TODO:完善此方法实现注册设备
+        String iotId = RandomStringUtils.randomAlphanumeric(10);
+        dvo.setIotId(iotId);
         dvo.setDevName(dev.getDevName());
         dvo.setDevType(dev.getDevType());
         dvo.setDescription(dev.getDescription());
         dvo.setStatus("enabled");
-        return createDevice(dvo, userId);
 
+        return createDevice(dvo, userId);
     }
 
     @Override
@@ -68,15 +70,16 @@ public class DeviceServiceImpl implements DeviceService {
         //TODO:请完善此方法创建设备。创建成功可以调用 getDevice 返回刚创建成功的设备信息。
         DeviceEntity de = new DeviceEntity();
         de.setDevName(dev.getDevName());
-        de.setIotId(RandomStringUtils.randomAlphanumeric(4));
+        de.setIotId(RandomStringUtils.randomAlphanumeric(10));
         de.setDevType(dev.getDevType());
         de.setStatus(dev.getStatus());
         de.setDescription(dev.getDescription());
         de.setUserId(userId);
         de.setDevSecret(RandomStringUtils.randomAlphanumeric(13));
+        de.setCreateTime(new Date());
         deviceMapper.createDevice(de);
         deviceMapper.getDevice(userId, dev.getIotId());
-        return null;
+        return de;
     }
 
     @Override

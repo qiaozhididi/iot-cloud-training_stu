@@ -83,12 +83,13 @@ public class DeviceController {
         String userId = te.getUserId();
         //TODO:实现注册设备功能，考虑完善deviceService.registerDevice 方法并调用。
         if (userId != null) {
-//            resMsg.setErrcode("0");
-//            resMsg.setErrmsg("设备创建成功");
-//            resMsg.setData(dev);
-//        } else {
-//            resMsg.setErrcode("30001");
-//            resMsg.setErrmsg("设备创建失败");
+            DeviceEntity deviceEntity = deviceService.registerDevice(dev, userId);
+            resMsg.setData(deviceEntity);
+            resMsg.setErrcode("0");
+            resMsg.setErrmsg("设备注册成功");
+        } else {
+            resMsg.setErrcode("5001");
+            resMsg.setErrmsg("令牌无效");
         }
         return resMsg;
     }

@@ -24,7 +24,7 @@
     <insert id="createDevice" parameterType="iot.cloud.platform.cloud.entity.DeviceEntity">
         <!-- 请完善SQL语句往 device 表插入数据-->
         insert into device (iot_id,dev_name,dev_type,status,description,user_id,dev_secret,create_time) values
-        (#{iotId},#{devName},#{devType},#{status},#{description},#{userId},#{devSecret},now())
+        (#{iotId},#{devName},#{devType},#{status},#{description},#{userId},#{devSecret},#{createTime})
     </insert>
 
     <update id="updateDevice" parameterType="iot.cloud.platform.cloud.entity.DeviceEntity">
