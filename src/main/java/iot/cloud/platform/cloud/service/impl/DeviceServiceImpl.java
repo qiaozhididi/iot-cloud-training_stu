@@ -78,8 +78,7 @@ public class DeviceServiceImpl implements DeviceService {
         de.setDevSecret(RandomStringUtils.randomAlphanumeric(13));
         de.setCreateTime(new Date());
         deviceMapper.createDevice(de);
-        deviceMapper.getDevice(userId, dev.getIotId());
-        return de;
+        return getDevice(userId, dev.getIotId());
     }
 
     @Override
