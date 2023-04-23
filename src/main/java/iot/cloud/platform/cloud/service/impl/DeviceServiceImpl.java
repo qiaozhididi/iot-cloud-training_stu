@@ -77,8 +77,11 @@ public class DeviceServiceImpl implements DeviceService {
         de.setUserId(userId);
         de.setDevSecret(RandomStringUtils.randomAlphanumeric(13));
         de.setCreateTime(new Date());
-        deviceMapper.createDevice(de);
-        return getDevice(userId, dev.getIotId());
+        if (deviceMapper.createDevice(de)) {
+            return getDevice(userId, de.getIotId());
+        } else {
+            return null;
+        }
     }
 
     @Override
